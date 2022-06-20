@@ -11,6 +11,28 @@
   </head>
 
   <body>
+  <% if user_signed_in?%>
+    <p>You are signed as: <%=current_user.name%></p>
+    <%=button_to "Log out", 
+              destroy_user_session_path, 
+              method: :delete,
+              class:'link',
+              data: { turbo: false }
+    %>
+  <%end%>
+    <% if flash.any?%>
+      <% flash.each do |name, msg| -%>
+        <%if name=='alert'%>
+          <div class='alert'>
+          <%= content_tag :div, msg, class: name %>
+          </div>
+        <%else%>
+          <div class='notice'>
+          <%= content_tag :div, msg, class: name %>
+          </div>
+        <% end -%>
+      <% end -%>
+    <%end%>
     <%= yield %>
   </body>
 </html>
