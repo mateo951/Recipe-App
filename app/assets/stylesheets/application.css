@@ -55,6 +55,11 @@ li {
   margin: 10px;
 }
 
+.alert-pos {
+  width: 60%;
+  float: left;
+}
+
 .notice {
   background-color: #17a2b8;
   color: black;
@@ -68,6 +73,42 @@ li {
 .container {
   width: 80%;
   margin-inline: auto;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+.button {
+  background-color: cadetblue; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.margin-bottom-bttn {
+  margin-bottom: 20px;
+}
+
+.float-right {
+  float: right;
 }
 
 @media (max-width: 500px) {
