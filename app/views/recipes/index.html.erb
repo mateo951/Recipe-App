@@ -1,2 +1,19 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<%= link_to 'Add new recipe', new_recipe_path, 
+class: 'btn element-right primary-bg-color margin-botton-20' %>
+<div class="container-full">
+  <%@recipes.each do |recipe|%>
+    <div class="recipe-card">
+      <div class='flex f-column padding-10 recipe-title'>
+        <p class='bold larger-font margin-botton-5'>
+          <%= link_to recipe.name, recipe_path(id:recipe.id),
+            class: 'text' %>
+        <p>
+        <%= button_to 'Remove', recipe, method: :delete, data: { turbo: false },
+          class: 'primary-color margin-botton-20 small-font link' %>
+      </div>
+      <div>
+        <p class="italic padding-10"><%=recipe.description%><p>
+      </div>
+    </div>
+  <%end%>
+<div>
