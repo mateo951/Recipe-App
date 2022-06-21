@@ -44,9 +44,9 @@ To get a local copy up and running follow these simple example steps.
 
 👤 **Victor Peralta**
 
-- GitHub: [Ntwali-Josue](https://github.com/VicPeralta)
-- Twitter: [Ntwali-Josue](https://twitter.com/VicPeralta)
-- LinkedIn: [Ntwali-Josue](https://www.linkedin.com/in/vicperalta/)
+- GitHub: [Victor Peralta](https://github.com/VicPeralta)
+- Twitter: [Victor Peralta](https://twitter.com/VicPeralta)
+- LinkedIn: [Victor Peralta](https://www.linkedin.com/in/vicperalta/)
 
 ## 🤝 Contributing
 
@@ -66,4 +66,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENSE) licensed.
