@@ -1,0 +1,51 @@
+<h1 class='text-centered margin-botton-20'>
+  <%=@recipe.name%>
+</h1>
+<div class='flex info-recipe'>
+  <div class='left w-70'>
+    <p class='margin-botton-20 larger-font'>
+      Preparation time: <%=@recipe.preparationTime%> minutes
+    </p>
+    <p class='margin-botton-20 larger-font'>
+      Cooking time: <%=@recipe.cookingTime%> minutes
+    </p>
+    <p class='margin-botton-20 larger-font'>Steps go here ...</p>
+  </div>
+  <div class=''>
+    <%if @recipe.public %>
+      <%=button_to 'Make private', toggle_public_path(id:@recipe.id),
+      class: 'btn-small primary-bg-color margin-botton-20'%>
+    <%else%>
+      <%=button_to 'Make public', toggle_public_path(id:@recipe.id),
+      class: 'btn-small info-bg-color margin-botton-20'%>
+    <%end%>
+  </div>
+</div>
+
+<div class='flex space-evenly w-100'>
+  <%=button_to 'Generate shopping list', public_recipes_path,
+    class: 'btn primary-bg-color'%>
+  <%=button_to 'Add ingredient', public_recipes_path,
+    class: 'btn primary-bg-color'%>
+<div>
+<hr>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+        <td><%= ingredient.food.name%></td>
+        <td><%= ingredient.food.measurementUnit%></td>
+        <td><%= ingredient.food.price%></td>
+        <td><%= button_to "Delete", delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), method: :delete, class: 'btn btn-primary' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
