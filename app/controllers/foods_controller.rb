@@ -11,12 +11,12 @@ class FoodsController < ApplicationController
 
   def create
     @food = current_user.foods.new(food_params)
-
-    if (food_params[:price].to_f > 0)
+    if food_params[:price].to_f > 0
       if @food.save
         flash[:success] = "#{@food.name} was successfully created"
         redirect_to foods_url
-      elsif flash[:alert] = "#{@food.name} was not created"
+      else
+        flash[:alert] = "#{@food.name} was not created"
         redirect_to new_food_url
       end
     else
