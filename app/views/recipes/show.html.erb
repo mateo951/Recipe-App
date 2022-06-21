@@ -1,7 +1,7 @@
 <h1 class='text-centered margin-botton-20'>
   <%=@recipe.name%>
 </h1>
-<div class='flex info-recipe'>
+<div class='flex info-recipe space-between'>
   <div class='left w-70'>
     <p class='margin-botton-20 larger-font'>
       Preparation time: <%=@recipe.preparationTime%> minutes
@@ -22,14 +22,15 @@
   </div>
 </div>
 
-<div class='flex space-evenly w-100'>
+<div class='flex space-evenly w-100 margin-botton-20'>
   <%=button_to 'Generate shopping list', public_recipes_path,
     class: 'btn primary-bg-color'%>
   <%=button_to 'Add ingredient', public_recipes_path,
     class: 'btn primary-bg-color'%>
-<div>
+</div>
 <hr>
-<table class="table">
+<div>
+  <table class="table">
     <thead class="thead-dark">
       <tr>
         <th>Food</th>
@@ -44,8 +45,20 @@
         <td><%= ingredient.food.name%></td>
         <td><%= ingredient.food.measurementUnit%></td>
         <td><%= ingredient.food.price%></td>
-        <td><%= button_to "Delete", delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), method: :delete, class: 'btn btn-primary' %></td>
+        <td>
+          <%= button_to "Modify", 
+            delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
+            method: :delete, 
+            class: 'btn-small warning-bg-color margin-botton-5'
+          %>
+          <%= button_to "Delete", 
+            delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
+            method: :delete, 
+            class: 'btn-small danger-bg-color margin-botton-5'
+          %>
+        </td>
       </tr>
       <% end %>
     </tbody>
   </table>
+</div>

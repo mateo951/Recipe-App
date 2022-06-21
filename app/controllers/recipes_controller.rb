@@ -27,4 +27,10 @@ class RecipesController < ApplicationController
     recipe.public
     redirect_to recipe_path(id: params[:id])
   end
+
+  def delete_ingredient
+    ingredient = RecipeFood.find(params[:ingredient])
+    ingredient.destroy
+    redirect_to recipe_path(id: params[:id]), notice: "Ingedient: #{ingredient.food.name} deleted"
+  end
 end
