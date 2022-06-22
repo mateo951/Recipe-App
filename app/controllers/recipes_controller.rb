@@ -15,8 +15,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    puts "Parametros: #{permitted_parameters}"
-    @recipe = Recipe.new(permitted_parameters)
+    @recipe = Recipe.new(permitted_parameters_recipe)
     @recipe.user = current_user
     if @recipe.valid?
       @recipe.save
@@ -29,6 +28,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.recipe_foods.includes([:food])
+    @ingredient = RecipeFood.new
   end
 
   def toggle
@@ -46,8 +46,24 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(id: params[:id]), notice: "Ingedient: #{ingredient.food.name} deleted"
   end
 
-  def permitted_parameters
+  def add_ingredient
+    recipe = Recipe.find(params[:id])
+    ingredient = RecipeFood.new(permitted_parameters_ingredient)
+    ingredient.recipe = recipe
+    if ingredient.valid?
+      ingredient.save
+      redirect_to recipe_path(id:recipe.id), notice: "Ingredient: #{ingredient.food.name} added successfully"
+      return
+    end
+    redirect_to recipe_path(id:recipe.id), alert: 'There was an error adding the ingredient'
+  end
+
+  def permitted_parameters_recipe
     params.require(:recipe).permit(:name, :description, :cookingTime,
                                    :preparationTime, :public)
+  end
+
+  def permitted_parameters_ingredient
+    params.require(:recipe_food).permit(:food_id, :quantity)
   end
 end

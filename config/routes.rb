@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   
   post 'toggle_public', to: 'recipes#toggle', as: 'toggle_public'
   delete 'recipe_delete_ingredient', to: 'recipes#delete_ingredient', 
-        as: 'delete_ingredient'
+    as: 'delete_ingredient'
+  post 'recipe_add_ingredient', to: 'recipes#add_ingredient',
+    as: 'add_ingredient'
   
   resources :users
   resources :recipes, only: %i[index show new create destroy] do

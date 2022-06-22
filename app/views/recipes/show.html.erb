@@ -26,8 +26,21 @@
   <%=button_to 'Generate shopping list', shopping_list_path,
     method: :get,
     class: 'btn primary-bg-color'%>
-  <%=button_to 'Add ingredient', public_recipes_path,
-    class: 'btn primary-bg-color'%>
+  <button class='btn primary-bg-color' onclick="document.getElementById('addIngredient').classList.toggle('collapse')"
+    id='collapse-btn'>
+      Add ingredient
+  </button>
+</div>
+<div class='collapse' id='addIngredient'> 
+  <%= form_for(@ingredient, 
+    data: { turbo: false },
+    url: add_ingredient_path(id:@recipe.id)) do |f| %>
+      <%= f.label :food_id, "Food", class:"form-label" %>
+      <%= f.select :food_id, current_user.foods.map{|food| [food.name, food.id]}, required: true %>
+      <%= f.label :quantity, "Quantity", class:"form-label " %>
+      <%= f.number_field :quantity, required: true %>
+      <%= f.submit "Add ingredient", class: "btn success-bg-color" %>
+  <% end %>
 </div>
 <hr>
 <div>

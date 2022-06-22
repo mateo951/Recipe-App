@@ -207,6 +207,10 @@
   text-align: center;
 }
 
+.collapse {
+  display: none;
+}
+
 @media (max-width: 500px) {
   .recipe-card {
     flex-direction: column;
