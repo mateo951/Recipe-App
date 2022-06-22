@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
   def index
     @foods = Food.all
-    @foods = current_user.foods.all.includes(:recipe_foods)
+    @foods = current_user.foods.all
   end
 
   def new
