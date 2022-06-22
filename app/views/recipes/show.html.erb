@@ -1,0 +1,78 @@
+<h1 class='text-centered margin-botton-20'>
+  <%=@recipe.name%>
+</h1>
+<div class='flex info-recipe space-between'>
+  <div class='left w-70'>
+    <p class='margin-botton-20 larger-font'>
+      Preparation time: <%=@recipe.preparationTime%> minutes
+    </p>
+    <p class='margin-botton-20 larger-font'>
+      Cooking time: <%=@recipe.cookingTime%> minutes
+    </p>
+    <p class='margin-botton-20 larger-font'>Steps go here ...</p>
+  </div>
+  <div class=''>
+    <%if @recipe.public %>
+      <%=button_to 'Make private', toggle_public_path(id:@recipe.id),
+      class: 'btn-small primary-bg-color margin-botton-20'%>
+    <%else%>
+      <%=button_to 'Make public', toggle_public_path(id:@recipe.id),
+      class: 'btn-small info-bg-color margin-botton-20'%>
+    <%end%>
+  </div>
+</div>
+
+<div class='flex space-evenly w-100 margin-botton-20'>
+  <%=button_to 'Generate shopping list', shopping_list_path,
+    method: :get,
+    class: 'btn primary-bg-color'%>
+  <button class='btn primary-bg-color' onclick="document.getElementById('addIngredient').classList.toggle('collapse')"
+    id='collapse-btn'>
+      Add ingredient
+  </button>
+</div>
+<div class='collapse' id='addIngredient'> 
+  <%= form_for(@ingredient, 
+    data: { turbo: false },
+    url: add_ingredient_path(id:@recipe.id)) do |f| %>
+      <%= f.label :food_id, "Food", class:"form-label" %>
+      <%= f.select :food_id, current_user.foods.map{|food| [food.name, food.id]}, required: true %>
+      <%= f.label :quantity, "Quantity", class:"form-label " %>
+      <%= f.number_field :quantity, required: true %>
+      <%= f.submit "Add ingredient", class: "btn success-bg-color" %>
+  <% end %>
+</div>
+<hr>
+<div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+        <td><%= ingredient.food.name%></td>
+        <td> <%=ingredient.quantity%> <%= ingredient.food.measurementUnit%></td>
+        <td><%= number_to_currency ingredient.food.price%></td>
+        <td>
+          <%= button_to "Modify", 
+            delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
+            method: :delete, 
+            class: 'btn-small warning-bg-color margin-botton-5'
+          %>
+          <%= button_to "Delete", 
+            delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
+            method: :delete, 
+            class: 'btn-small danger-bg-color margin-botton-5'
+          %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

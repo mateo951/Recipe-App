@@ -1,0 +1,33 @@
+<h1 class='text-centered'>
+  New recipe
+</h1>
+<%= form_for(@recipe, 
+  data: { turbo: false },
+  url: recipes_path) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %><br />
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, autofocus: true %><br />
+  </div>
+  <div class="field">
+    <%= f.label :preparationTime, 'Preparation time'%><br />
+    <%= f.number_field :preparationTime, in: 1.0..72.0, step: 0.5, autofocus: true%>
+    <%= f.label 'Enter time in minutes' %><br />
+  </div>
+  <div class="field">
+    <%= f.label :cookingTime, 'Cooking time' %><br />
+    <%= f.number_field :cookingTime, in: 1.0..72.0, step: 0.5, autofocus: true%>
+    <%= f.label 'Enter time in minutes' %><br />
+  </div>
+  <div class="field">
+    <%= f.label :public %>
+    <%= f.check_box :public, autofocus: true%>
+  </div>
+  
+  <div class="new-btn">
+    <%= f.submit "Create recipe" %>
+  </div>
+<%end%>
