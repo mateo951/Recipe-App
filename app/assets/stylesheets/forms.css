@@ -36,6 +36,7 @@ textarea:focus {
   color: white;
   text-align: center;
   border: none;
+  width: max-content;
 }
 
 .actions {
