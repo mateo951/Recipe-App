@@ -1,8 +1,6 @@
 class PublicRecipesController < ApplicationController
   def index
-    @recipes = Recipe.includes([:user]).where(public: true)
-    @recipe_foods = RecipeFood.joins(:food, :recipe).where(food: { user: current_user }, recipe: { user: current_user })
-    @total_cost = @recipe_foods.sum('quantity*price')
-    @total_items = @recipe_foods.select('food_id').count
+    @users = User.all
+    @recipes = Recipe.includes([:user]).where(public: true).where.not(user_id: current_user)
   end
 end
