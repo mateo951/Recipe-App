@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'recipes#index'
   get 'public_recipes', to: 'public_recipes#index'
+  get 'shopping_list', to: 'shopping_list#index', as: 'shopping_list'
   
   post 'toggle_public', to: 'recipes#toggle', as: 'toggle_public'
   delete 'recipe_delete_ingredient', to: 'recipes#delete_ingredient', 
