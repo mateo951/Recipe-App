@@ -1,29 +1,30 @@
 <h1 class='text-centered'>
   New recipe
 </h1>
+<div class="container">
 <%= form_for(@recipe, 
   data: { turbo: false },
   url: recipes_path) do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
+  <div class="form-group">
+    <%= f.label :name %>
     <%= f.text_field :name, autofocus: true %><br />
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
+  <div class="form-group">
+    <%= f.label :description %>
     <%= f.text_area :description, autofocus: true %><br />
   </div>
-  <div class="field">
-    <%= f.label :preparationTime, 'Preparation time'%><br />
+  <div class="form-group">
+    <%= f.label :preparationTime, 'Preparation time'%>
     <%= f.number_field :preparationTime, in: 1.0..72.0, step: 0.5, autofocus: true%>
     <%= f.label 'Enter time in minutes' %><br />
   </div>
-  <div class="field">
-    <%= f.label :cookingTime, 'Cooking time' %><br />
+  <div class="form-group">
+    <%= f.label :cookingTime, 'Cooking time' %>
     <%= f.number_field :cookingTime, in: 1.0..72.0, step: 0.5, autofocus: true%>
     <%= f.label 'Enter time in minutes' %><br />
   </div>
-  <div class="field">
-    <%= f.label :public %>
+  <div class="bold margin-botton-10">
+    <%= f.label :public, "Make this recipe public" %>
     <%= f.check_box :public, autofocus: true%>
   </div>
   
@@ -31,3 +32,4 @@
     <%= f.submit "Create recipe" %>
   </div>
 <%end%>
+</div>
