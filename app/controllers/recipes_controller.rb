@@ -52,10 +52,10 @@ class RecipesController < ApplicationController
     ingredient.recipe = recipe
     if ingredient.valid?
       ingredient.save
-      redirect_to recipe_path(id:recipe.id), notice: "Ingredient: #{ingredient.food.name} added successfully"
+      redirect_to recipe_path(id: recipe.id), notice: "Ingredient: #{ingredient.food.name} added successfully"
       return
     end
-    redirect_to recipe_path(id:recipe.id), alert: 'There was an error adding the ingredient'
+    redirect_to recipe_path(id: recipe.id), alert: 'There was an error adding the ingredient'
   end
 
   def permitted_parameters_recipe
