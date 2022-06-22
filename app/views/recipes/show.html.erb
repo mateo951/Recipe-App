@@ -23,7 +23,8 @@
 </div>
 
 <div class='flex space-evenly w-100 margin-botton-20'>
-  <%=button_to 'Generate shopping list', public_recipes_path,
+  <%=button_to 'Generate shopping list', shopping_list_path,
+    method: :get,
     class: 'btn primary-bg-color'%>
   <%=button_to 'Add ingredient', public_recipes_path,
     class: 'btn primary-bg-color'%>
@@ -43,8 +44,8 @@
       <% @ingredients.each do |ingredient| %>
         <tr>
         <td><%= ingredient.food.name%></td>
-        <td><%= ingredient.food.measurementUnit%></td>
-        <td><%= ingredient.food.price%></td>
+        <td> <%=ingredient.quantity%> <%= ingredient.food.measurementUnit%></td>
+        <td><%= number_to_currency ingredient.food.price%></td>
         <td>
           <%= button_to "Modify", 
             delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
