@@ -21,7 +21,14 @@
     <%end%>
   </div>
 </div>
-
+<script>
+function myFunction(e) {
+  document.getElementById('changeIngredient').classList.toggle('collapse');
+  document.getElementById('recipe_food_id').value = e.target.dataset.ingredient;
+  document.getElementById('recipe_food_id').style.display = 'none';
+  document.getElementById('recipe_food_quantity').focus();
+}
+</script>
 <div class='flex space-evenly w-100 margin-botton-20'>
   <%=button_to 'Generate shopping list', shopping_list_path,
     method: :get,
@@ -42,6 +49,20 @@
       <%= f.submit "Add ingredient", class: "btn success-bg-color" %>
   <% end %>
 </div>
+<div class='collapse margin-botton-10' id='changeIngredient'> 
+  <%= form_for(@ingredient, 
+    data: { turbo: false },
+    url: change_ingredient_path(recipe_id:@recipe.id)) do |f| %>
+      <div class="margin-botton-20">
+        <%= f.number_field :id, required: true, readonly: true %><br/>
+      </div>
+      <div class="margin-botton-20">
+        <%= f.label :quantity, "Quantity", class:"form-label " %>
+        <%= f.number_field :quantity, required: true %><br/>
+      </div>
+      <%= f.submit "Change quantity", class: "btn success-bg-color" %>
+  <% end %>
+</div>
 <hr>
 <div>
   <table class="table">
@@ -60,11 +81,10 @@
         <td> <%=ingredient.quantity%> <%= ingredient.food.measurementUnit%></td>
         <td><%= number_to_currency ingredient.food.price%></td>
         <td class="action-column">
-          <%= button_to "Modify", 
-            delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
-            method: :delete, 
-            class: 'btn-small warning-bg-color margin-botton-5'
-          %>
+          <button class="btn-small warning-bg-color margin-botton-5" data-ingredient=<%=ingredient.id%>
+                  onclick="myFunction(event)">
+            Modify
+          </button>
           <%= button_to "Delete", 
             delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
             method: :delete, 

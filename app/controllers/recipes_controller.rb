@@ -58,6 +58,22 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(id: recipe.id), alert: 'There was an error adding the ingredient'
   end
 
+  def change_ingredient
+    puts params
+    ingredient_id = params[:recipe_food][:id]
+    quantity = params[:recipe_food][:quantity]
+    ingredient = RecipeFood.find(ingredient_id)
+    ingredient.quantity = quantity
+    if ingredient.valid?
+      ingredient.save
+      redirect_to recipe_path(id: params[:recipe_id]),
+                  notice: "Ingredient: #{ingredient.food.name} changed successfully"
+      return
+    end
+    redirect_to recipe_path(id: params[:recipe_id]),
+                alert: 'There was an error changing the ingredient'
+  end
+
   def permitted_parameters_recipe
     params.require(:recipe).permit(:name, :description, :cookingTime,
                                    :preparationTime, :public)

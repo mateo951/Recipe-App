@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     as: 'delete_ingredient'
   post 'recipe_add_ingredient', to: 'recipes#add_ingredient',
     as: 'add_ingredient'
-  
+  post 'recipe_change_ingredient', to: 'recipes#change_ingredient',
+    as: 'change_ingredient'
   resources :users
   resources :recipes, only: %i[index show new create destroy] do
     resources :recipe_foods, only: %i[create destroy]
