@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'recipes#index'
-  get 'public_recipes', to: 'public_recipes#index'
+  root 'public_recipes#index'
 
   resources :users
   resources :recipes, only: %i[index show new create destroy] do

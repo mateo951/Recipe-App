@@ -70,6 +70,14 @@ li {
   margin: 10px;
 }
 
+.flex {
+  display: flex;
+}
+
+.justify-content-sa {
+  justify-content: space-around;
+}
+
 .container {
   width: 80%;
   margin-inline: auto;
@@ -109,6 +117,26 @@ tr:nth-child(even) {
 
 .float-right {
   float: right;
+}
+
+.card {
+  border: 1px black solid;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.main-text {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.align-text-center {
+  text-align: center;
+}
+
+.font-size-pr {
+  font-size: 20px;
 }
 
 @media (max-width: 500px) {
