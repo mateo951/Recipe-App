@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @ingredients = @recipe.recipe_foods
+    @ingredients = @recipe.recipe_foods.includes([:food])
   end
 
   def toggle
@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
   end
 
   def permitted_parameters
-    params.require(:recipe).permit(:name, :description, :cookingTime, 
+    params.require(:recipe).permit(:name, :description, :cookingTime,
                                    :preparationTime, :public)
   end
 end
