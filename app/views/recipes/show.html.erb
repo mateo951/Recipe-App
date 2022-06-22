@@ -31,7 +31,7 @@
       Add ingredient
   </button>
 </div>
-<div class='collapse' id='addIngredient'> 
+<div class='collapse margin-botton-10' id='addIngredient'> 
   <%= form_for(@ingredient, 
     data: { turbo: false },
     url: add_ingredient_path(id:@recipe.id)) do |f| %>
@@ -59,7 +59,7 @@
         <td><%= ingredient.food.name%></td>
         <td> <%=ingredient.quantity%> <%= ingredient.food.measurementUnit%></td>
         <td><%= number_to_currency ingredient.food.price%></td>
-        <td>
+        <td class="action-column">
           <%= button_to "Modify", 
             delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
             method: :delete, 

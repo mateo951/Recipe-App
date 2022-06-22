@@ -211,6 +211,11 @@
   display: none;
 }
 
+.action-column {
+  display: flex;
+  gap: 10px;
+}
+
 @media (max-width: 500px) {
   .recipe-card {
     flex-direction: column;
@@ -230,5 +235,9 @@
 
   .left {
     width: 100%;
+  }
+
+  .action-column {
+    flex-direction: column;
   }
 }

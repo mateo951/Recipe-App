@@ -29,7 +29,7 @@ textarea:focus {
   outline: 2px solid darkgray;
 }
 
-input[type='submit'] {
+.form-group input[type='submit'] {
   text-decoration: none;
   padding: 10px 20px;
   background-color: cornflowerblue;
