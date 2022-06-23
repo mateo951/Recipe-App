@@ -33,10 +33,8 @@ class RecipesController < ApplicationController
 
   def toggle
     recipe = Recipe.find(params[:id])
-    puts recipe.public
     recipe.public = !recipe.public
     recipe.save
-    recipe.public
     redirect_to recipe_path(id: params[:id])
   end
 
