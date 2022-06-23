@@ -28,8 +28,8 @@ class FoodsController < ApplicationController
   def destroy
     @food = Food.find(params[:id])
 
-    @checkFood = RecipeFood.where(food: @food)
-    if @checkFood.count > 0
+    @check_food = RecipeFood.where(food: @food)
+    if @check_food.count.positive?
       flash[:alert] = "#{@food.name} belongs to some recipes"
     else
       flash[:alert] = "#{@food.name} was successfully deleted"
