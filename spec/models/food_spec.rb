@@ -5,7 +5,7 @@ RSpec.describe 'Food model', type: :request do
     @user = User.new(name: 'Victor', email: 'victorperaltagomez@gmail.com', password: '121212')
   end
   it 'Create a valid food' do
-    food = Food.new(name: 'Bread', measurementUnit:'Piece', price:1.00, user: @user)
+    food = Food.new(name: 'Bread', measurementUnit: 'Piece', price: 1.00, user: @user)
     expect(food).to be_valid
   end
   it 'Create an invalid food due to invalid name' do
