@@ -79,7 +79,7 @@ function myFunction(e) {
         <tr>
         <td><%= ingredient.food.name%></td>
         <td> <%=ingredient.quantity%> <%= ingredient.food.measurementUnit%></td>
-        <td><%= number_to_currency ingredient.food.price%></td>
+        <td><%= number_to_currency ingredient.food.price * ingredient.quantity%></td>
         <td class="action-column">
           <button class="btn-small warning-bg-color margin-botton-5" data-ingredient=<%=ingredient.id%>
                   onclick="myFunction(event)">
