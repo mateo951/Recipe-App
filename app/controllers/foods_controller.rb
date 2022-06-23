@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
   def index
     @foods = Food.all
-    @foods = current_user.foods.all.includes(:recipe_foods)
+    @foods = current_user.foods.all
   end
 
   def new
@@ -27,8 +27,14 @@ class FoodsController < ApplicationController
 
   def destroy
     @food = Food.find(params[:id])
-    flash[:alert] = "#{@food.name} was successfully deleted"
-    @food.destroy
+
+    @check_food = RecipeFood.where(food: @food)
+    if @check_food.count.positive?
+      flash[:alert] = "#{@food.name} belongs to some recipes"
+    else
+      flash[:alert] = "#{@food.name} was successfully deleted"
+      @food.destroy
+    end
     redirect_to foods_url
   end
 
