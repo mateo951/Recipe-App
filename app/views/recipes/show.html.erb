@@ -16,8 +16,10 @@
       <%=button_to 'Make private', toggle_public_path(id:@recipe.id),
       class: 'btn-small primary-bg-color margin-botton-20'%>
     <%else%>
-      <%=button_to 'Make public', toggle_public_path(id:@recipe.id),
-      class: 'btn-small info-bg-color margin-botton-20'%>
+      <% if can? :manage, @recipe %>
+        <%=button_to 'Make public', toggle_public_path(id:@recipe.id),
+        class: 'btn-small info-bg-color margin-botton-20'%>
+      <% end %>
     <%end%>
   </div>
 </div>

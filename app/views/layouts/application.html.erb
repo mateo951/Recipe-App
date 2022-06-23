@@ -12,18 +12,20 @@
 
   <body>
    <div class="container">
+
     <div class="navbar dark-bg-color padding-10 flex f-column margin-botton-20">
       <div class="navbar-links flex space-evenly margin-botton-10">
-        <p class="light-color">Welcome: <%=current_user.name%></p>
+        <% if user_signed_in?%>
+          <p class="light-color">Welcome: <%=current_user.name%></p>
+        <%end%>
         <%= link_to "Home", root_path, class: '' %>
         <%= link_to "Foods", foods_path, class: "" %>
         <%= link_to "Recipes", recipes_path, class: "" %>
         <%= link_to "Shopping List", shopping_list_path, class: "" %>
-        <% if user_signed_in?%>
-          <%=button_to "Log out", destroy_user_session_path, method: :delete, class:'link warning-color', data: { turbo: false } %>
-        <%end%>
+        <%=button_to "Log out", destroy_user_session_path, method: :delete, class:'link warning-color', data: { turbo: false } %>
       </div>
     </div>
+
     <% if flash.any?%>
       <% flash.each do |name, msg| -%>
         <%if name=='alert'%>
