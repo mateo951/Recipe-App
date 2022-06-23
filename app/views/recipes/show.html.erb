@@ -12,13 +12,15 @@
     <p class='margin-botton-20 larger-font'>Steps go here ...</p>
   </div>
   <div class=''>
-    <%if @recipe.public %>
-      <%=button_to 'Make private', toggle_public_path(id:@recipe.id),
-      class: 'btn-small primary-bg-color margin-botton-20'%>
-    <%else%>
-      <%=button_to 'Make public', toggle_public_path(id:@recipe.id),
-      class: 'btn-small info-bg-color margin-botton-20'%>
-    <%end%>
+    <% if can? :manage, @recipe %>
+      <%if @recipe.public %>
+        <%=button_to 'Make private', toggle_public_path(id:@recipe.id),
+        class: 'btn-small primary-bg-color margin-botton-20'%>
+      <%else%>
+        <%=button_to 'Make public', toggle_public_path(id:@recipe.id),
+        class: 'btn-small info-bg-color margin-botton-20'%>
+      <%end%>
+    <% end %>
   </div>
 </div>
 <script>
@@ -30,13 +32,15 @@ function myFunction(e) {
 }
 </script>
 <div class='flex space-evenly w-100 margin-botton-20'>
-  <%=button_to 'Generate shopping list', shopping_list_path,
-    method: :get,
+  <% if can? :manage, @recipe %>
+    <%=button_to 'Generate shopping list', shopping_list_path,
+      method: :get,
     class: 'btn primary-bg-color'%>
-  <button class='btn primary-bg-color' onclick="document.getElementById('addIngredient').classList.toggle('collapse')"
-    id='collapse-btn'>
-      Add ingredient
-  </button>
+    <button class='btn primary-bg-color' onclick="document.getElementById('addIngredient').classList.toggle('collapse')"
+      id='collapse-btn'>
+        Add ingredient
+    </button>
+  <%end%>
 </div>
 <div class='collapse margin-botton-10' id='addIngredient'> 
   <%= form_for(@ingredient, 
@@ -71,7 +75,9 @@ function myFunction(e) {
         <th>Food</th>
         <th>Quantity</th>
         <th>Value</th>
-        <th>Actions</th>
+        <% if can? :manage, @recipe %>
+          <th>Actions</th>
+        <%end%>
       </tr>
     </thead>
     <tbody>
@@ -80,17 +86,19 @@ function myFunction(e) {
         <td><%= ingredient.food.name%></td>
         <td> <%=ingredient.quantity%> <%= ingredient.food.measurementUnit%></td>
         <td><%= number_to_currency ingredient.food.price * ingredient.quantity%></td>
-        <td class="action-column">
+        <% if can? :manage, @recipe %>
+          <td class="action-column">
           <button class="btn-small warning-bg-color margin-botton-5" data-ingredient=<%=ingredient.id%>
-                  onclick="myFunction(event)">
-            Modify
+          onclick="myFunction(event)">
+          Modify
           </button>
           <%= button_to "Delete", 
-            delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
-            method: :delete, 
-            class: 'btn-small danger-bg-color margin-botton-5'
+          delete_ingredient_path(id:@recipe.id, ingredient: ingredient.id), 
+          method: :delete, 
+          class: 'btn-small danger-bg-color margin-botton-5'
           %>
-        </td>
+          </td>
+        <%end%>
       </tr>
       <% end %>
     </tbody>

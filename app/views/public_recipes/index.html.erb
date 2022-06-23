@@ -3,7 +3,9 @@
   <div class='card'>
     <div class="flex justify-content-sa font-size-pr">
       <div>
-        <p class='has-text-weight-bold is-size-4'><%= recipe.name%></p>
+        <p class='has-text-weight-bold is-size-4'>
+          <%= link_to recipe.name, recipe_path(id:recipe.id), class: 'text' %>
+        </p>
         <p class='has-text-weight-semibold is-size-5'>By: <%= recipe.user.name%></p>
       </div>
       <% @recipe_foods = RecipeFood.joins(:food, :recipe).where(food: { user: recipe.user_id }, recipe: { user: recipe.user_id }) %>
