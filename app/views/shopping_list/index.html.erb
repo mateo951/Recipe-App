@@ -1,0 +1,24 @@
+<h1 class='text-centered margin-botton-20'>Shopping List </h1>
+<h3 class='margin-botton-20'>Amount of food items to buy: <%=@total_items%></h3>
+<h3 class='margin-botton-20'>Total value of food needed: <%= number_to_currency @total_value%></h3>
+
+<div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item['name'] %></td>
+          <td> <%= item['quantity']%> <%= item['measurementUnit']%></td>
+          <td><%= number_to_currency item['total_price']%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
