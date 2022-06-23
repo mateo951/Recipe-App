@@ -8,7 +8,7 @@ class: 'btn element-right primary-bg-color margin-botton-20' %>
           <%= link_to recipe.name, recipe_path(id:recipe.id),
             class: 'text' %>
         <p>
-        <%= button_to 'Remove', recipe, method: :delete, data: { turbo: false },
+        <%= button_to 'Remove', recipe, method: :delete, data: { turbo: false }, id: "recipe-#{recipe.id}",
           class: 'primary-color margin-botton-20 small-font link' %>
       </div>
       <div>

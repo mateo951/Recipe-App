@@ -55,14 +55,14 @@ function myFunction(e) {
 </div>
 <div class='collapse margin-botton-10' id='changeIngredient'> 
   <%= form_for(@ingredient, 
-    data: { turbo: false },
+    data: { turbo: false }, html: {id:'change_ingredient'},
     url: change_ingredient_path(recipe_id:@recipe.id)) do |f| %>
       <div class="margin-botton-20">
         <%= f.number_field :id, required: true, readonly: true %><br/>
       </div>
       <div class="margin-botton-20">
         <%= f.label :quantity, "Quantity", class:"form-label " %>
-        <%= f.number_field :quantity, required: true %><br/>
+        <%= f.number_field :quantity, id:'change_quantity', required: true %><br/>
       </div>
       <%= f.submit "Change quantity", class: "btn success-bg-color" %>
   <% end %>
