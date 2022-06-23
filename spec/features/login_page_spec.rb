@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Login page test', type: :feature do
   before :all do
     @first_user ||= User.create(
-      name: 'Tom',
+      name: 'Victor',
       email: 'victorperaltagomez@gmail.com',
-      password: '121212',
+      password: '121212'
     )
   end
 
