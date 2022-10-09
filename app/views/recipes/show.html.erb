@@ -13,7 +13,7 @@
   </div>
   <div class=''>
     <% if can? :manage, @recipe %>
-      <div class="switch-container">
+      <turbo-frame id="toggle-public" class="switch-container">
         <form action=<%=toggle_public_path(id:@recipe.id)%> data-remote="true" method="post">
           <label>Public </label>
           <label class="switch">
@@ -22,7 +22,7 @@
             <span class="slider"/>
           </label>
         </form>
-      </div>
+      </turbo-frame>
     <% end %>
   </div>
 </div>
@@ -106,4 +106,10 @@
       <% end %>
     </tbody>
   </table>
+  <%=turbo_stream_from 'recipes'%>
+  <%=turbo_frame_tag  'recipes' do%>
+    <% @recipes.each do |recipe|%>
+      <p> <%=recipe.name%> </p>
+    <%end%>
+  <%end%>
 </div>

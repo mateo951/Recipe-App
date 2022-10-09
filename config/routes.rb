@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :tweets
   devise_for :users
-  root 'public_recipes#index'
+  root 'tweets#index'
   get 'public_recipes', to: 'public_recipes#index'
   get 'shopping_list', to: 'shopping_list#index', as: 'shopping_list'
   

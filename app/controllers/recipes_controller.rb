@@ -29,15 +29,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.recipe_foods.includes([:food])
     @ingredient = RecipeFood.new
+    @recipes = Recipe.all
   end
 
   def toggle
-    recipe = Recipe.find(params[:id])
-    puts recipe.public
-    recipe.public = !recipe.public
-    recipe.save
-    recipe.public
-    redirect_to recipe_path(id: params[:id])
+    @recipe = Recipe.find(params[:id])
+    @recipe.public = !@recipe.public
+    @recipe.save
+    @recipe.public
+    # redirect_to recipe_path(id: params[:id])
+    render 'recipes/status_changed'
   end
 
   def delete_ingredient

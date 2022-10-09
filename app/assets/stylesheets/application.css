@@ -139,6 +139,11 @@ tr:nth-child(even) {
   font-size: 20px;
 }
 
+.turbo-progress-bar {
+  height: 5px;
+  background-color: green;
+}
+
 @media (max-width: 500px) {
   .container {
     width: 95%;
