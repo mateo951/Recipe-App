@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@ingredient) do%>
-  <%= form_for(@ingredient, 
-    url: update_ingredient_recipe_path(id:@ingredient.id)) do |form|%>
+  <%= form_with(model:@ingredient, 
+    url: recipe_recipe_food_path(id:@ingredient.id)) do |form|%>
     <div class="d-flex mt-1 align-items-center">
     <%= form.label :quantity, class:"label-control me-1 ms-1" %>
     <%= form.number_field :quantity, class:"form-control me-1"%>
