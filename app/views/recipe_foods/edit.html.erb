@@ -1,11 +1,10 @@
 <%= turbo_frame_tag dom_id(@ingredient) do%>
-  <%= form_with(model:@ingredient, 
-    url: recipe_recipe_food_path(id:@ingredient.id)) do |form|%>
+  <%= form_with(model:[@ingredient.recipe,@ingredient ]) do |form|%>
     <div class="d-flex mt-1 align-items-center">
     <%= form.label :quantity, class:"label-control me-1 ms-1" %>
     <%= form.number_field :quantity, class:"form-control me-1"%>
     </div>
     <%= form.submit "Update", class:"btn btn-warning m-1"%>
-    <%= link_to "Back", recipe_path(@ingredient.recipe.id), class:"btn btn-primary"%>
+    <%= link_to "Back", recipe_path(@ingredient.recipe), class:"btn btn-primary"%>
   <% end %>
 <% end%>
