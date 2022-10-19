@@ -1,7 +1,7 @@
 class RecipeFoodsController < ApplicationController
   def new
-    @ingredient = RecipeFood.new
-    @recipe_id = params[:recipe_id]
+    recipe = Recipe.find(params[:recipe_id])
+    @ingredient = recipe.recipe_foods.new
   end
 
   def destroy
