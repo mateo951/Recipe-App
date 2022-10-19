@@ -1,10 +1,1 @@
-<turbo-frame id="toggle-public" class="switch-container">
-  <form action=<%=toggle_public_recipe_path(id:@recipe.id)%> data-remote="true" method="post">
-    <label>Public </label>
-    <label class="switch">
-      <input type="submit"  class=<%=@recipe.public ? 'public' : '' %>
-            />
-      <span class="slider"/>
-    </label>
-  </form>
-</turbo-frame>
+<%= render partial:"shared/publicRecipe"%>

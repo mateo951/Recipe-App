@@ -19,21 +19,13 @@
     <% end %>
   </div>
 </div>
-<script>
-  function myFunction(e) {
-    document.getElementById('changeIngredient').classList.toggle('collapse');
-    document.getElementById('recipe_food_id').value = e.target.dataset.ingredient;
-    document.getElementById('recipe_food_id').style.display = 'none';
-    document.getElementById('recipe_food_quantity').focus();
-  }
-</script>
-<div class='flex space-evenly w-100 margin-botton-20'>
+<div class='d-flex mb-4'>
   <% if can? :manage, @recipe %>
     <%=button_to 'Generate shopping list', shopping_list_index_path,
       method: :get,
     class: 'btn btn-primary btn-sm me-2'%>
     <%= turbo_frame_tag "addIngredient" do%>
-      <%= link_to "Add ingredient", new_ingredient_recipe_path(), class: "btn btn-primary btn-sm"%>
+      <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe), class: "btn btn-primary btn-sm"%>
     <% end %>
   <%end%>
 </div>
@@ -50,17 +42,9 @@
     </div>
     <%= turbo_stream_from "ingredients"%>
       <%= turbo_frame_tag "ingredients" do%>
-        <div>
           <% @ingredients.each do |ingredient| %>
             <%= render partial: "shared/ingredient", locals: {ingredient: ingredient}%>
           <% end %>
-        </div>
       <% end %>
   </div>
-  <%=turbo_stream_from 'recipes'%>
-  <%=turbo_frame_tag  'recipes' do%>
-    <% @recipes.each do |recipe|%>
-      <p> <%=recipe.name%> </p>
-    <%end%>
-  <%end%>
 </div>

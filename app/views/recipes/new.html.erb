@@ -2,7 +2,7 @@
   New recipe
 </h1>
 <div class="container">
-<%= form_for(@recipe, 
+<%= form_with(model: @recipe, 
   data: { turbo: false },
   url: recipes_path) do |f| %>
   <div class="mb-3">

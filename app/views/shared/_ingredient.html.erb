@@ -5,11 +5,12 @@
       <div style="flex:1"><%= number_to_currency ingredient.food.price * ingredient.quantity%></div>
       <% if can? :manage, @recipe %>
         <div style="flex:1">
-          <%= link_to "Modify", change_ingredient_recipe_path(id:ingredient.id),
+          <%= link_to "Modify", 
+            edit_recipe_recipe_food_path(recipe_id: @recipe.id, id:ingredient.id),
             class: 'btn btn-warning btn-sm m-1'
           %>
           <%= link_to "Delete", 
-            delete_ingredient_recipe_path(ingredient: ingredient.id),
+            recipe_recipe_food_path(recipe_id: @recipe.id, id:ingredient.id),
             data: { turbo_method: :delete, turbo_confirm: "Are you sure"},
             class: 'btn btn-danger btn-sm m-1'
           %>
