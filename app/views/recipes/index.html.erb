@@ -1,18 +1,18 @@
+<h1 class="mt-2 text-center">Recipes</h1>
 <%= link_to 'Add new recipe', new_recipe_path, 
-class: 'btn element-right primary-bg-color margin-botton-20' %>
+  class: 'btn btn-primary d-block btn-sm ms-auto me-1 w-25'
+%>
 <div class="container-full">
   <%@recipes.each do |recipe|%>
-    <div class="recipe-card">
-      <div class='flex f-column padding-10 recipe-title'>
-        <p class='bold larger-font margin-botton-5'>
+    <div class="row mt-4 border border-light shadow-sm bg-body rounded ">
+      <div class='col'>
+        <p class='display-5'>
           <%= link_to recipe.name, recipe_path(id:recipe.id),
-            class: 'text' %>
+            class: 'text-decoration-none text-dark link-primary' %>
         <p>
+        <p class="col"><%=recipe.description%><p>
         <%= button_to 'Remove', recipe, method: :delete, data: { turbo: false },
-          class: 'primary-color margin-botton-20 small-font link' %>
-      </div>
-      <div>
-        <p class="italic padding-10"><%=recipe.description%><p>
+          class: 'btn btn-danger mt-3' %>
       </div>
     </div>
   <%end%>

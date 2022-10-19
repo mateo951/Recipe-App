@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "addIngredient" do%>
+  <%= form_for(@ingredient, url:add_ingredient_recipe_path, method: :post)  do |form| %>
+    <%= form.label :food_id, "Food", class:"form-label" %>
+    <%= form.select :food_id, current_user.foods.map{|food| [food.name, food.id]}, required: true %>
+    <%= form.label :quantity, "Quantity", class:"form-label " %>
+    <%= form.number_field :quantity, required: true %>
+    <%= form.submit "Add ingredient", class: "btn btn-outline-primary" %>
+    <%= link_to "Close", recipe_path(@recipe), class:"btn btn-outline-secondary"  %>
+  <% end %>
+<% end %>
