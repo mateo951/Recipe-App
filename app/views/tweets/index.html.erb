@@ -1,7 +1,0 @@
-<p style="color: green"><%= notice %></p>
-<h1>Tweets</h1>
-<%= render "tweets/form", tweet: @tweet%>
-<%= turbo_stream_from "tweets"%>
-<%= turbo_frame_tag "tweets" do%>
-  <%= render @tweets%>
-<%end%>
