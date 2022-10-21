@@ -1,11 +1,13 @@
 <% if flash.any?%>
   <% flash.each do |name, msg| -%>
     <%if name=='alert'%>
-      <div class='alert alert-danger flash'>
+      <div class='alert alert-danger flash' 
+        data-controller="removals" data-action="animationend->removals#remove">
       <%= content_tag :div, msg, class: name %>
       </div>
     <%else%>
-      <div class='alert alert-info flash'>
+      <div class='alert alert-info flash'
+      data-controller="removals" data-action="animationend->removals#remove">
       <%= content_tag :div, msg, class: name %>
       </div>
     <% end %>
