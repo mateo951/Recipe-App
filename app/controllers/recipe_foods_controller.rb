@@ -5,10 +5,13 @@ class RecipeFoodsController < ApplicationController
   end
 
   def destroy
-    ingredient = RecipeFood.find(params[:id])
+    @ingredient = RecipeFood.find(params[:id])
     recipe = params[:recipe_id]
-    ingredient.destroy
-    redirect_to recipe_path(id: recipe), notice: "Ingedient: #{ingredient.food.name} deleted", status: 303
+    @ingredient.destroy
+    respond_to do |format|
+      format.html {redirect_to recipe_path(id: recipe), status: 303}
+      format.turbo_stream { flash.now[:notice] = "Ingedient: #{@ingredient.food.name} deleted"}
+    end
   end
 
   def create
@@ -18,8 +21,8 @@ class RecipeFoodsController < ApplicationController
     if @ingredient.valid?
       @ingredient.save
       respond_to do |format|
-        format.turbo_stream
         format.html { redirect_to recipe_path(@recipe), status: 303 }
+        format.turbo_stream  { flash.now[:notice] = "Ingredient  #{@ingredient.food.name} added successfully" }
       end
       return
     end
