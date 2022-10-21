@@ -30,3 +30,16 @@
   height: 5px;
   background-color: green;
 }
+
+.flash {
+  animation: appear-then-fade 3s both;
+}
+
+@keyframes appear-then-fade {
+  0%, 100% {
+    opacity:0
+  }
+  5%, 60% {
+    opacity:1
+  }
+}
