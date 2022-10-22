@@ -32,6 +32,8 @@
 }
 
 .flash {
+  position: fixed;
+  left:10px;
   animation: appear-then-fade 3s both;
 }
 
