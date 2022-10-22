@@ -9,8 +9,8 @@ class RecipeFoodsController < ApplicationController
     recipe = params[:recipe_id]
     @ingredient.destroy
     respond_to do |format|
-      format.html {redirect_to recipe_path(id: recipe), status: 303}
-      format.turbo_stream { flash.now[:notice] = "Ingedient: #{@ingredient.food.name} deleted"}
+      format.html { redirect_to recipe_path(id: recipe), status: 303 }
+      format.turbo_stream { flash.now[:notice] = "Ingedient: #{@ingredient.food.name} deleted" }
     end
   end
 
@@ -22,7 +22,7 @@ class RecipeFoodsController < ApplicationController
       @ingredient.save
       respond_to do |format|
         format.html { redirect_to recipe_path(@recipe), status: 303 }
-        format.turbo_stream  { flash.now[:notice] = "Ingredient  #{@ingredient.food.name} added successfully" }
+        format.turbo_stream { flash.now[:notice] = "Ingredient  #{@ingredient.food.name} added successfully" }
       end
       return
     end
@@ -41,8 +41,8 @@ class RecipeFoodsController < ApplicationController
     if @ingredient.valid?
       @ingredient.save
       respond_to do |format|
-        format.html {redirect_to recipe_path(id: @ingredient.recipe.id), status: 303}
-        format.turbo_stream { flash.now[:notice] =  "Ingredient  #{@ingredient.food.name} updated successfully"}
+        format.html { redirect_to recipe_path(id: @ingredient.recipe.id), status: 303 }
+        format.turbo_stream { flash.now[:notice] = "Ingredient  #{@ingredient.food.name} updated successfully" }
       end
       return
     end
