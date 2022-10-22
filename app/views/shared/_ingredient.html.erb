@@ -3,7 +3,7 @@
       <div style="flex:1"><%= ingredient.food.name%></div>
       <div style="flex:1"> <%=ingredient.quantity%> <%= ingredient.food.measurementUnit%></div>
       <div style="flex:1"><%= number_to_currency ingredient.food.price * ingredient.quantity%></div>
-      <% if can? :manage, @recipe %>
+      <% if can? :manage, ingredient.recipe %>
         <div style="flex:1">
           <%= link_to "Modify", 
             edit_recipe_recipe_food_path(ingredient.recipe, ingredient),
